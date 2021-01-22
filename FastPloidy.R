@@ -89,10 +89,8 @@ a
 
 # plot total number snps vs ratio
 plot(Freq_per_sample$RATIO~Freq_per_sample$TOTAL,xlab="Number SNPs (het 0.1-0.9),depth>16", 
-     ylab= "Ratio",
-     main=input)
+     ylab= "Ratio")
 abline(h = 1.5) # you can choose ratio cut-off yourself
-legend('topright', legend = levels(Freq_per_sample$Ploidy_KM), col = 1:3,  cex = 0.8, pch = 1)
 
 # Choose ratio based on plots
 CHOSEN_RATIO <- 1.5
@@ -104,7 +102,7 @@ CHOSEN_RATIO <- 1.5
 #########################
 
 # add new ploidy based on script 
-Freq_per_sample$ploidy_script <- ifelse(Freq_per_sample$RATIO_high<CHOSEN_RATIO, "diploid", "triploid")
+Freq_per_sample$ploidy_script <- ifelse(Freq_per_sample$RATIO<CHOSEN_RATIO, "diploid", "triploid")
 
 # save data
 write.csv(Freq_per_sample, paste("Ratios_ploidy_",depth,".csv", sep="",collapse=NULL),row.names=FALSE)
